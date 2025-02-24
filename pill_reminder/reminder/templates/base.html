@@ -1,3 +1,5 @@
+<!-- base.html -->
+ {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,14 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Pill Reminder{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <style>
-        body {
-            padding-top: 60px;
-        }
-        .navbar-brand {
-            font-weight: bold;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/appwrite@13.0.0"></script>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -30,13 +25,7 @@
             </div>
 
             <div class="navbar-end">
-                {% if user %}
-                    <span class="navbar-item">Welcome, {{ user.name }}</span>
-                    <a class="navbar-item" href="/logout/">Logout</a>
-                {% else %}
-                    <a class="navbar-item" href="/login/">Login</a>
-                    <a class="navbar-item" href="/register/">Register</a>
-                {% endif %}
+                <a class="navbar-item" id="auth-status">Login</a>
             </div>
         </div>
     </nav>
@@ -52,5 +41,8 @@
             <p>&copy; 2023 Pill Reminder. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Appwrite Auth Script -->
+    <script src="{% static 'js/appwrite_auth.js' %}"></script>
 </body>
 </html>

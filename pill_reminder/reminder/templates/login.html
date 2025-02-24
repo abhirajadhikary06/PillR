@@ -6,24 +6,55 @@
 <div class="columns is-centered">
     <div class="column is-half">
         <h1 class="title">Login</h1>
-        <form method="POST" action="/login/">
-            {% csrf_token %}
+        <form id="login-form">
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control">
-                    <input class="input" type="email" name="email" required>
+                    <input class="input" type="email" id="email" required>
                 </div>
             </div>
             <div class="field">
                 <label class="label">Password</label>
                 <div class="control">
-                    <input class="input" type="password" name="password" required>
+                    <input class="input" type="password" id="password" required>
                 </div>
             </div>
             <div class="field">
                 <button class="button is-primary" type="submit">Login</button>
             </div>
         </form>
+        <div class="has-text-centered mt-4">
+            <p>Don't have an account? <a href="/register/" class="has-text-link">Register here</a>.</p>
+        </div>
     </div>
 </div>
+
+<script>
+document.getElementById('login-form').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        const response = await fetch('https://cloud.appwrite.io/v1/account/sessions/email', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-appwrite-project': 'your-project-id', // Replace with your Appwrite project ID
+            },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+
+        alert('Login successful!');
+        window.location.href = '/dashboard/';
+    } catch (error) {
+        alert(`Error: ${error.message}`);
+    }
+});
+</script>
 {% endblock %}
