@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Set Reminder{% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-half">
+        <h1 class="title">Set Reminder</h1>
+        <form method="POST" action="/set_reminder/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">Upload Prescription Image</label>
+                <div class="control">
+                    <input class="input" type="file" name="prescription" accept="image/*" required>
+                </div>
+            </div>
+            <div class="field">
+                <button class="button is-primary" type="submit">Upload & Set Reminder</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

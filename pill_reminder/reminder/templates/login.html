@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-half">
+        <h1 class="title">Login</h1>
+        <form method="POST" action="/login/">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" type="email" name="email" required>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                    <input class="input" type="password" name="password" required>
+                </div>
+            </div>
+            <div class="field">
+                <button class="button is-primary" type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

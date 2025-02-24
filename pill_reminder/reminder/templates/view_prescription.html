@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}View Prescription{% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-three-quarters">
+        <h1 class="title">Prescription Details</h1>
+        <div class="box">
+            <!-- Prescription Image -->
+            {% if prescription.image_url %}
+            <div class="image-container">
+                <img src="{{ prescription.image_url }}" alt="Prescription Image" class="image">
+            </div>
+            {% endif %}
+
+            <!-- Prescription Data -->
+            <div class="content">
+                <h2 class="subtitle">Medicine Details</h2>
+                <ul>
+                    {% if prescription.prescription_data %}
+                        {% for key, value in prescription.prescription_data.items %}
+                            <li><strong>{{ key|title }}:</strong> {{ value }}</li>
+                        {% endfor %}
+                    {% else %}
+                        <p>No details available for this prescription.</p>
+                    {% endif %}
+                </ul>
+            </div>
+
+            <!-- Back Button -->
+            <div class="buttons">
+                <a href="/" class="button is-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

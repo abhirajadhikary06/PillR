@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Share Prescription{% endblock %}
+
+{% block content %}
+<div class="columns is-centered">
+    <div class="column is-half">
+        <h1 class="title">Share Prescription</h1>
+        <div class="box">
+            <p>Your prescription has been shared successfully!</p>
+            <p>Share this link: <a href="{{ share_link }}">{{ share_link }}</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
